@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+.alert-alert {
+  @extend .alert-warning;
+}
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.left{
+	margin-left: 10px;
+}
+
+#middle{
+	text-align: center;
+}

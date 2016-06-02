@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @program.language %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @program.description %>
+</p>
+
+<%= link_to 'Edit', edit_program_path(@program),class: 'btn btn-success' %> |
+<%= link_to 'Back', programs_path,class: 'btn btn-success' %>

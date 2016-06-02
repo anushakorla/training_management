@@ -1,0 +1,12 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <% if admin_signed_in? || user_signed_in?%>
+        <li><%= link_to 'Logout', destroy_admin_session_path || destroy_user_session_path, :method => :delete %></li>
+      <% else %>
+        <li><%= link_to 'Admin login',  admin_session_path %></li>
+        <li><%= link_to 'Employee login', new_user_session_path  %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>

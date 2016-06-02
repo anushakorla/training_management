@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h2 style="font-weight: bold;">Levels:</h2><br>
+<% if admin_signed_in? %>
+   <%= link_to 'Add Level', new_level_path,class: 'btn btn-success' %> |
+<% end%>
+<%= link_to 'Back',programs_path,class: 'btn btn-success' %>
+<table class = 'table table-hover'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Duration</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @levels.each do |level| %>
+      <tr>
+        <td style="font-weight: bold;"><%=link_to level.name,level%></td>
+        <td style="font-weight: bold;"><%= level.duration %></td>
+        <td><%= link_to "Download", level.attachment_url %></td>
+        <td><%= link_to 'Edit', edit_level_path(level),class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', level, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

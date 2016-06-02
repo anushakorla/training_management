@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h2 style="font-weight: bold;">Programs:</h2><br>
+<% if admin_signed_in? %>
+  <%= link_to 'Add Program', new_program_path,class: 'btn btn-success' %>
+<% end%>
+  
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Language</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td style="font-weight: bold;"><%=link_to program.language,levels_path %></td>
+        <td><%= program.description %></td>
+        <% if admin_signed_in? %>
+           <td><%= link_to 'Edit', edit_program_path(program),class: 'btn btn-warning' %></td>
+           <td><%= link_to 'Delete', program, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
