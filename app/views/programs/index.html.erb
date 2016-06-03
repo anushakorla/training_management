@@ -18,7 +18,7 @@
   <tbody>
     <% @programs.each do |program| %>
       <tr>
-        <td style="font-weight: bold;"><%=link_to program.language,levels_path %></td>
+        <td style="font-weight: bold;"><%=link_to program.language,program_levels_path(program) %></td>
         <td><%= program.description %></td>
         <% if admin_signed_in? %>
            <td><%= link_to 'Edit', edit_program_path(program),class: 'btn btn-warning' %></td>

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :levels
-  resources :programs
+  
+  resources :levels do
+    resources :attachments
+  end
+  resources :programs do
+    resources :levels
+  end
   root 'page#home'
   get 'page/instruction'
 

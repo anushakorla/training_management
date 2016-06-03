@@ -10,5 +10,5 @@
   <%= @level.duration %>
 </p>
 
-<%= link_to 'Edit', edit_level_path(@level),class: 'btn btn-success' %> |
-<%= link_to 'Back', levels_path,class: 'btn btn-success' %>
+<%= link_to 'Edit', edit_program_level_path(@level.program,@level),class: 'btn btn-success' %> |
+<%= link_to 'Back', program_levels_path(@level.program),class: 'btn btn-success' %>

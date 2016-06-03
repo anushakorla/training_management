@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602114345) do
+ActiveRecord::Schema.define(version: 20160603083312) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,17 +32,25 @@ ActiveRecord::Schema.define(version: 20160602114345) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
+  create_table "attachments", force: :cascade do |t|
+    t.string   "document"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.integer  "level_id"
+  end
+
+  add_index "attachments", ["level_id"], name: "index_attachments_on_level_id"
+
   create_table "levels", force: :cascade do |t|
     t.string   "name"
     t.string   "duration"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "attach_file_name"
-    t.string   "attach_content_type"
-    t.integer  "attach_file_size"
-    t.datetime "attach_updated_at"
-    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "program_id"
   end
+
+  add_index "levels", ["program_id"], name: "index_levels_on_program_id"
 
   create_table "programs", force: :cascade do |t|
     t.string   "language"

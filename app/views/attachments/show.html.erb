@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Document Name:</strong>
+  <%= @attachment.name %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%=@attachment.document_url %>
+</p>
+
+<%= link_to 'Edit', edit_level_attachment_path(@attachment.level,@attachment),class: 'btn btn-success' %> |
+<%= link_to 'Back', level_attachments_path,(@attachment.level),class: 'btn btn-success' %>

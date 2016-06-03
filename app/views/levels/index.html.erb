@@ -2,7 +2,7 @@
 
 <h2 style="font-weight: bold;">Levels:</h2><br>
 <% if admin_signed_in? %>
-   <%= link_to 'Add Level', new_level_path,class: 'btn btn-success' %> |
+   <%= link_to 'Add Level', new_program_level_path,class: 'btn btn-success' %> |
 <% end%>
 <%= link_to 'Back',programs_path,class: 'btn btn-success' %>
 <table class = 'table table-hover'>
@@ -17,11 +17,13 @@
   <tbody>
     <% @levels.each do |level| %>
       <tr>
-        <td style="font-weight: bold;"><%=link_to level.name,level%></td>
+        <td style="font-weight: bold;"><%=link_to level.name,level_attachments_path(level)%></td>
         <td style="font-weight: bold;"><%= level.duration %></td>
-        <td><%= link_to "Download", level.attachment_url %></td>
-        <td><%= link_to 'Edit', edit_level_path(level),class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Destroy', level, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
+        <% if admin_signed_in? %>
+          <td><%= link_to 'Add Attachment', new_level_attachment_path(level),class: 'btn btn-success' %></td>
+          <td><%= link_to 'Edit', edit_program_level_path(level.program,level),class: 'btn btn-warning' %></td>
+          <td><%= link_to 'Destroy',[level.program,level], method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

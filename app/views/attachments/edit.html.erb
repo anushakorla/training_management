@@ -1,0 +1,6 @@
+<h1>Edit Attachment</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@attachment.level,@attachment],class: 'btn btn-success' %> |
+<%= link_to 'Back', level_attachments_path(@attachment.level,@attachment),class: 'btn btn-success' %>

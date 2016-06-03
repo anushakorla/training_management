@@ -1,4 +1,4 @@
 class Level < ActiveRecord::Base
 	belongs_to :program
-	mount_uploader :attachment, AttachmentUploader
+	has_many :attachments
 end
