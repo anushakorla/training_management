@@ -1,6 +1,21 @@
 <h1>Edit Attachment</h1>
 
-<%= render 'form' %>
+<%= render 'form' %></br>
 
-<%= link_to 'Show', [@attachment.level,@attachment],class: 'btn btn-success' %> |
-<%= link_to 'Back', level_attachments_path(@attachment.level,@attachment),class: 'btn btn-success' %>
+<%= link_to 'Back', level_attachments_path(@attachment.level),class: 'btn btn-success' %>
+<script>
+$(document).ready(function () {
+  $(".form-horizontal").validate({
+    debug: false,
+    rules: {
+      "attachment[name]": { required: true},
+      "attachment[document]": { required: true},
+      },
+      messages: {
+      "attachment[name]": "Please enter the Name.",
+      "attachment[document]": "Please choose the Document.",
+      }
+    });
+});
+
+</script>

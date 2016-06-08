@@ -29,3 +29,19 @@
   </div>
 <% end %>
 </div>
+<script>
+$(document).ready(function () {
+  $("#new_level").validate({
+    debug: false,
+    rules: {
+      "level[name]": { required: true},
+      "level[duration]": { required: true}
+      },
+      messages: {
+      "level[name]": "Please enter the name.",
+      "level[duration]": "Please enter the duration."
+      }
+    });
+});
+
+</script>

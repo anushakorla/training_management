@@ -2,5 +2,20 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @program,class: 'btn btn-success'%> |
 <%= link_to 'Back', programs_path,class: 'btn btn-success' %>
+<script>
+$(document).ready(function () {
+  $(".form-horizontal").validate({
+    debug: false,
+    rules: {
+      "program[language]": { required: true},
+      "program[description]": { required: true}
+      },
+      messages: {
+      "program[language]": "Please enter the language.",
+      "program[description]": "Please enter the description."
+      }
+    });
+});
+
+</script>

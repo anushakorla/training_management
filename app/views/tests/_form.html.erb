@@ -1,0 +1,68 @@
+<%= form_for([@test.level,@test],html: { multipart: true, class: "form-horizontal" }) do |f| %>
+  <% if @test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+      <ul>
+      <% @test.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="form-group">
+   <div class="col-md-3">
+    <%= f.label :title %><br>
+    <%= f.text_field :title,placeholder: 'Title',class: 'form-control' %>
+  </div>
+  </div>
+   <div class="form-group">
+   <div class="col-md-3">
+    <%= f.label :description %><br>
+    <%= f.text_area :description,id:'testeditor',placeholder:'description',class: 'form-control' %>
+  </div>
+  </div>
+   <div class="form-group">
+   <div class="col-md-3">
+    <%= f.label :duration %><br>
+    <%= f.number_field :duration,placeholder: 'Duration',class: 'form-control' %>
+  </div>
+  </div>
+   <div class="form-group">
+   <div class="col-md-3">
+    <%= f.label :date %><br>
+    <%= f.text_field :date,:placeholder => 'Select Date and Time', class: "datetimepicker form-control"%>
+  </div>
+  </div>
+   <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>
+<script>
+   jQuery('.datetimepicker').datetimepicker({ minDate: 0,timepicker:true });
+    
+     CKEDITOR.replace( 'testeditor', {
+              extraPlugins: 'codesnippet',
+              uiColor: '#14B8C4',
+               width:['800px']
+             } );
+
+    
+   $("#new_test").validate({
+    debug: false,
+    rules: {
+      "test[title]": {required: true},
+      "test[description]": {required: true},
+      "test[duration]": {required: true},
+      "test[date]": {required: true},
+      },
+      messages: {
+      "test[title]": "Please enter the Title.",
+      "test[description]": "Please Enter the Description.",
+      "test[duration]": "Please enter the Duration.",
+      "test[date]": "Please select the Date.",
+      }
+    });
+
+</script>

@@ -6,7 +6,7 @@ class LevelsController < ApplicationController
   def index
     @program = Program.find(params[:program_id])
     @levels = @program.levels
-   
+    
   end
 
   # GET /levels/1
@@ -83,6 +83,6 @@ class LevelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def level_params
-      params.require(:level).permit(:name, :duration,:program_id)
+      params.require(:level).permit(:name, :duration,:program_id,:start_date,:end_date)
     end
 end

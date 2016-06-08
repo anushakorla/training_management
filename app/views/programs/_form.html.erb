@@ -29,3 +29,19 @@
   </div>
 <% end %>
 </div>
+<script>
+$(document).ready(function () {
+  $("#new_program").validate({
+    debug: false,
+    rules: {
+      "program[language]": { required: true},
+      "program[description]": { required: true}
+      },
+      messages: {
+      "program[language]": "Please enter the language.",
+      "program[description]": "Please enter the description."
+      }
+    });
+});
+
+</script>

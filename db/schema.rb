@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603083312) do
+ActiveRecord::Schema.define(version: 20160608062428) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20160603083312) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "program_id"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   add_index "levels", ["program_id"], name: "index_levels_on_program_id"
@@ -58,6 +60,30 @@ ActiveRecord::Schema.define(version: 20160603083312) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "submits", force: :cascade do |t|
+    t.string   "title"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "test_id"
+    t.integer  "user_id"
+  end
+
+  add_index "submits", ["test_id"], name: "index_submits_on_test_id"
+  add_index "submits", ["user_id"], name: "index_submits_on_user_id"
+
+  create_table "tests", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "duration"
+    t.string   "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "level_id"
+  end
+
+  add_index "tests", ["level_id"], name: "index_tests_on_level_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

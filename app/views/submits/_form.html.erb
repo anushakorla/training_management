@@ -1,0 +1,45 @@
+<%= form_for([@submit.test,@submit],html: { multipart: true, class: "form-horizontal" }) do |f| %>
+  <% if @submit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@submit.errors.count, "error") %> prohibited this submit from being saved:</h2>
+
+      <ul>
+      <% @submit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+   <div class="col-md-3">
+    <%= f.label :title %><br>
+    <%= f.text_field :title,placeholder: 'Title of the test',class: 'form-control' %>
+  </div>
+  </div>
+  <div class="form-group">
+  <div class="col-md-3">
+    <%= f.label :code %><br>
+    <%= f.file_field :code,class: 'left'%>
+  </div>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary left'%>
+  </div>
+<% end %>
+<script>
+$(document).ready(function () {
+  $("#new_submit").validate({
+    debug: false,
+    rules: {
+      "submit[title]": { required: true},
+      "submit[code]": { required: true},
+      },
+      messages: {
+      "submit[title]": "Please enter the Title.",
+      "submit[code]": "Please choose the code.",
+      }
+    });
+});
+
+</script>

@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery.datetimepicker
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
@@ -31,3 +32,10 @@
 #middle{
 	text-align: center;
 }
+
+#new_program label.error,#new_attachment label.error,#new_level label.error,#new_submit label.error,.form-horizontal label.error{
+	color: red;
+}
+#new_program input.error,#new_attachment input.error,#new_level input.error,#new_submit input.error,.form-horizontal input.error{
+  border:1px solid red;
+ }

@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>List of Materials:</h1>
-
+<% if admin_signed_in?%>
+  <td><%= link_to 'Add Attachment', new_level_attachment_path,class: 'btn btn-success' %></td> |
+<% end %>
 <%= link_to 'Back', program_levels_path(@level.program),class: 'btn btn-success' %>
 
 
@@ -19,7 +21,6 @@
       <tr>
         <td><%= attachment.name %></td>
         <td><%= link_to "Download", attachment.document_url,class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Show', [attachment.level,attachment],class: 'btn btn-success' %></td>
         <% if admin_signed_in? %>
           <td><%= link_to 'Edit', edit_level_attachment_path(attachment.level,attachment),class: 'btn btn-warning' %></td>
           <td><%= link_to 'Destroy', [attachment.level,attachment], method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-danger'%></td>
@@ -28,6 +29,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
 

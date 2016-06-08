@@ -6,6 +6,16 @@ class AttachmentsController < ApplicationController
   def index
     @level = Level.find(params[:level_id])
     @attachments = @level.attachments
+    if params[:start_date]
+      @user = current_user
+      @admin = Admin.last
+      StartTrainingAdmin.start_training_email(@admin, @level,@user).deliver_now
+      StartTrainingUser.start_training_email(@user, @level).deliver_now
+      @level.update(start_date: Time.now)
+      @level.update(end_date: (@level.start_date + @level.duration.to_i.days))
+      redirect_to level_attachments_path(@level)
+      flash[:success] = "The #{@level.name} training has been started."
+    end
   end
 
   # GET /attachments/1
@@ -77,7 +87,7 @@ class AttachmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_attachment
      @level = Level.find(params[:level_id])
-     @attachment = level.attachments.find(params[:id])
+     @attachment = @level.attachments.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
