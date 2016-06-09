@@ -60,9 +60,9 @@ class AttachmentsController < ApplicationController
     @attachment = @level.attachments.find(params[:id])
     respond_to do |format|
       if @attachment.update(attachment_params)
-        format.html { redirect_to [@attachment.level,@attachment]}
+        format.html { redirect_to level_attachments_path(@level)}
         flash[:success] = 'Attachment was successfully updated.' 
-        format.json { render :show, status: :ok, location: [@attachment.level,@attachment] }
+        format.json { render :show, status: :ok, location: level_attachments_path(@level) }
       else
         format.html { render :edit }
         format.json { render json: @attachment.errors, status: :unprocessable_entity }

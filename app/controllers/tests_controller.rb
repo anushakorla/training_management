@@ -50,9 +50,9 @@ class TestsController < ApplicationController
     @test = @level.tests.find(params[:id])
     respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to [@test.level,@test]}
+        format.html { redirect_to level_tests_path(@level)}
          flash[:success] = 'Test was successfully updated.' 
-        format.json { render :show, status: :ok, location: [@test.level,@test] }
+        format.json { render :show, status: :ok, location: level_tests_path(@level) }
       else
         format.html { render :edit }
         format.json { render json: @test.errors, status: :unprocessable_entity }

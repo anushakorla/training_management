@@ -51,9 +51,9 @@ class LevelsController < ApplicationController
     @level = @program.levels.find(params[:id])
     respond_to do |format|
       if @level.update(level_params)
-        format.html { redirect_to [@level.program,@level]}
+        format.html { redirect_to program_levels_path(@program)}
         flash[:success] = 'Level was successfully updated.' 
-        format.json { render :show, status: :ok, location: [@level.program,@level] }
+        format.json { render :show, status: :ok, location: program_levels_path(@program) }
       else
         format.html { render :edit }
         format.json { render json: @level.errors, status: :unprocessable_entity }

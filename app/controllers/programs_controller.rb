@@ -30,7 +30,7 @@ class ProgramsController < ApplicationController
       if @program.save
         format.html { redirect_to programs_url }
         flash[:success] = 'Program was successfully created.' 
-        format.json { render :show, status: :created, location: @program }
+        format.json { render :show, status: :created, location: programs_url}
       else
         format.html { render :new }
         format.json { render json: @program.errors, status: :unprocessable_entity }
@@ -43,9 +43,9 @@ class ProgramsController < ApplicationController
   def update
     respond_to do |format|
       if @program.update(program_params)
-        format.html { redirect_to @program }
+        format.html { redirect_to sprograms_url }
         flash[:success] ='Program was successfully updated.' 
-        format.json { render :show, status: :ok, location: @program }
+        format.json { render :show, status: :ok, location: programs_url }
       else
         format.html { render :edit }
         format.json { render json: @program.errors, status: :unprocessable_entity }
