@@ -1,0 +1,35 @@
+= form_for([@attachment.level,@attachment],html: { multipart: true, class: "form-horizontal" }) do |f|
+  - if @attachment.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@attachment.errors.count, "error")
+        prohibited this attachment from being saved:
+      %ul
+        - @attachment.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    .col-md-3
+      = f.label :name
+      %br
+        = f.text_field :name,placeholder: 'document name',class: 'form-control'
+  .form-group
+    .col-md-3
+      = f.label :document
+      %br
+        = f.file_field :document
+  .form-field
+    = f.submit class: 'btn btn-primary left'
+:javascript
+  $(document).ready(function () {
+    $("#new_attachment").validate({
+      debug: false,
+      rules: {
+        "attachment[name]": { required: true},
+        "attachment[document]": { required: true},
+        },
+        messages: {
+        "attachment[name]": "Please enter the Name.",
+        "attachment[document]": "Please choose the Document.",
+        }
+      });
+  });

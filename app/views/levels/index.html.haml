@@ -1,0 +1,38 @@
+%p#notice= notice
+%h2{:style => "font-weight: bold;"} Levels:
+%br
+  - if admin_signed_in?
+    = link_to 'Add Level', new_program_level_path,class: 'btn btn-success'
+    |
+  = link_to 'Back',programs_path,class: 'btn btn-success'
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Duration
+        %th Attachments
+        %th Test
+        - if admin_signed_in?
+          %th{:style => "text-align: center;"} Action
+        %th{:colspan => "3"}
+    %tbody
+      - @levels.each do |level|
+        %tr
+          %td{:style => "font-weight: bold;"}= level.name
+          %td{:style => "font-weight: bold;"}= level.duration
+          - if user_signed_in?
+            - if level.start_date.present?
+              %td= link_to 'View Attachments',level_attachments_path(level),class: 'btn btn-primary'
+            - else
+              %td= link_to 'Start Training',level_attachments_path(level,start_date: true),class: 'btn btn-primary'
+          - if user_signed_in?
+            - if level.end_date.present?
+              - if (Time.now > level.end_date)
+                %td= link_to 'Start Test',level_tests_path(level),class: 'btn btn-primary'
+          - if admin_signed_in?
+            %td= link_to 'Attachments',level_attachments_path(level),class: 'btn btn-primary'
+            %td
+              = link_to 'Test',level_tests_path(level),class: 'btn btn-primary'
+              %td= link_to 'Edit', edit_program_level_path(level.program,level),class: 'btn btn-warning'
+              %td= link_to 'Destroy',[level.program,level], method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger'
+  %br

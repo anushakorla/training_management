@@ -28,7 +28,7 @@ class ProgramsController < ApplicationController
 
     respond_to do |format|
       if @program.save
-        format.html { redirect_to @program }
+        format.html { redirect_to programs_url }
         flash[:success] = 'Program was successfully created.' 
         format.json { render :show, status: :created, location: @program }
       else

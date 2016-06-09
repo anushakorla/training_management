@@ -1,0 +1,17 @@
+%h1 Edit Attachment
+= render 'form'
+= link_to 'Back', level_attachments_path(@attachment.level),class: 'btn btn-success'
+:javascript
+  $(document).ready(function () {
+    $(".form-horizontal").validate({
+      debug: false,
+      rules: {
+        "attachment[name]": { required: true},
+        "attachment[document]": { required: true},
+        },
+        messages: {
+        "attachment[name]": "Please enter the Name.",
+        "attachment[document]": "Please choose the Document.",
+        }
+      });
+  });

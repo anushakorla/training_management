@@ -33,9 +33,9 @@ class TestsController < ApplicationController
 
     respond_to do |format|
       if @test.save
-        format.html { redirect_to [@test.level,@test]}
+        format.html { redirect_to level_tests_path(@level)}
         flash[:success] = 'Test was successfully created.' 
-        format.json { render :show, status: :created, location: [@test.level,@test] }
+        format.json { render :show, status: :created, location: level_tests_path(@level) }
       else
         format.html { render :new }
         format.json { render json: @test.errors, status: :unprocessable_entity }

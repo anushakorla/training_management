@@ -1,0 +1,23 @@
+%p#notice= notice
+%h1 List of codes Submited
+= link_to 'Back',level_tests_path(@test.level),class: 'btn btn-primary'
+%table.table.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Title
+      %th Code
+      - if admin_signed_in?
+        %th
+          Action
+          %th
+      %th{:colspan => "3"}
+  %tbody
+    - @submits.each do |submit|
+      %tr
+        %td= submit.user.name
+        %td= submit.title
+        %td= link_to 'download',submit.code_url,class: 'btn btn-primary'
+        - if admin_signed_in?
+          %td= link_to 'Destroy', [submit.test,submit], method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger'
+%br

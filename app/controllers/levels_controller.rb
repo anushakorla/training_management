@@ -34,9 +34,9 @@ class LevelsController < ApplicationController
 
     respond_to do |format|
       if @level.save
-        format.html { redirect_to [@level.program,@level]}
+        format.html { redirect_to program_levels_path(@program)}
         flash[:success] = 'Level was successfully created.' 
-        format.json { render :show, status: :created, location: [@level.program,@level] }
+        format.json { render :show, status: :created, location: program_levels_path(@program) }
       else
         format.html { render :new }
         format.json { render json: @level.errors, status: :unprocessable_entity }

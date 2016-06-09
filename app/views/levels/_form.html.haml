@@ -1,0 +1,36 @@
+.left
+  = form_for([@level.program,@level],html: { multipart: true, class: "form-horizontal" }) do |f|
+    - if @level.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@level.errors.count, "error")
+          prohibited this level from being saved:
+        %ul
+          - @level.errors.full_messages.each do |message|
+            %li= message
+    .form-group
+      .col-md-3
+        = f.label :name
+        %br
+          = f.text_field :name,placeholder: 'level name',class: 'form-control'
+    .form-group
+      .col-md-3
+        = f.label :duration
+        %br
+          = f.text_field :duration,placeholder: 'level duration',class: 'form-control'
+    .form-group
+      = f.submit class: 'btn btn-primary'
+:javascript
+  $(document).ready(function () {
+    $("#new_level").validate({
+      debug: false,
+      rules: {
+        "level[name]": { required: true},
+        "level[duration]": { required: true}
+        },
+        messages: {
+        "level[name]": "Please enter the name.",
+        "level[duration]": "Please enter the duration."
+        }
+      });
+  });

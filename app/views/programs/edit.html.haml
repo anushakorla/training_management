@@ -1,0 +1,17 @@
+%h1 Edit Program
+= render 'form'
+= link_to 'Back', programs_path,class: 'btn btn-success'
+:javascript
+  $(document).ready(function () {
+    $(".form-horizontal").validate({
+      debug: false,
+      rules: {
+        "program[language]": { required: true},
+        "program[description]": { required: true}
+        },
+        messages: {
+        "program[language]": "Please enter the language.",
+        "program[description]": "Please enter the description."
+        }
+      });
+  });

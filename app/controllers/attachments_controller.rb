@@ -43,9 +43,9 @@ class AttachmentsController < ApplicationController
 
     respond_to do |format|
       if @attachment.save
-        format.html { redirect_to [@attachment.level,@attachment]}
+        format.html { redirect_to level_attachments_path(@level)}
         flash[:success] = 'Attachment was successfully created.' 
-        format.json { render :show, status: :created, location: [@attachment.level,@attachment] }
+        format.json { render :show, status: :created, location: level_attachments_path(@level) }
       else
         format.html { render :new }
         format.json { render json: @attachment.errors, status: :unprocessable_entity }

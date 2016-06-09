@@ -1,0 +1,8 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @submit.title
+%p
+  %strong Code:
+  = link_to 'download', @submit.code_url
+= link_to 'Back', programs_path,class: 'btn btn-success'

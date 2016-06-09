@@ -1,0 +1,16 @@
+- if user_signed_in?
+  %h1{:style => "text-align: center;margin-top: 150px;font-weight: bold;"}
+    = current_user.name
+    Welcome to RubyEffect!
+  %p{:style => "text-align: center;font-weight: bold;"}
+    Here we will take you to #{link_to 'Training Session.',page_instruction_path}
+- elsif admin_signed_in?
+  %h1{:style => "text-align: center;margin-top: 150px;font-weight: bold;"}
+    = current_admin.name
+    Welcome to RubyEffect!
+  %p{:style => "text-align: center;font-weight: bold;"}
+    Here is #{link_to 'Training Session.',programs_path}
+- else
+  .relogo
+    = image_tag("relogo.png", :alt => "RE Logo")
+    %h1 Training Management

@@ -1,0 +1,17 @@
+%h1 Edit Level
+= render 'form'
+= link_to 'Back', program_levels_path(@level.program),class: 'btn btn-success'
+:javascript
+  $(document).ready(function () {
+    $(".form-horizontal").validate({
+      debug: false,
+      rules: {
+        "level[name]": { required: true},
+        "level[duration]": { required: true}
+        },
+        messages: {
+        "level[name]": "Please enter the name.",
+        "level[duration]": "Please enter the duration."
+        }
+      });
+  });

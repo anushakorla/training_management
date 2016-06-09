@@ -1,0 +1,19 @@
+%h1 Edit Test
+= render 'form'
+= link_to 'Back', level_tests_path(@test.level),class: 'btn btn-success'
+:javascript
+  $(".form-horizontal").validate({
+   debug: false,
+   rules: {
+     "test[title]": {required: true},
+     "test[description]": {required: true},
+     "test[duration]": {required: true},
+     "test[date]": {required: true},
+     },
+     messages: {
+     "test[title]": "Please enter the Title.",
+     "test[description]": "Please Enter the Description.",
+     "test[duration]": "Please enter the Duration.",
+     "test[date]": "Please select the Date.",
+     }
+   });

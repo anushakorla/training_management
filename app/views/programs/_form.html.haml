@@ -1,0 +1,36 @@
+.left
+  = form_for(@program,html: { multipart: true, class: "form-horizontal" }) do |f|
+    - if @program.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@program.errors.count, "error")
+          prohibited this program from being saved:
+        %ul
+          - @program.errors.full_messages.each do |message|
+            %li= message
+    .form-group
+      .col-md-3
+        = f.label :language
+        %br
+          = f.text_field :language,placeholder: 'programming language',class: 'form-control'
+    .form-group
+      .col-md-3
+        = f.label :description
+        %br
+          = f.text_area :description,placeholder: 'description',class: 'form-control'
+    .form-group
+      = f.submit class: 'btn btn-primary'
+:javascript
+  $(document).ready(function () {
+    $("#new_program").validate({
+      debug: false,
+      rules: {
+        "program[language]": { required: true},
+        "program[description]": { required: true}
+        },
+        messages: {
+        "program[language]": "Please enter the language.",
+        "program[description]": "Please enter the description."
+        }
+      });
+  });

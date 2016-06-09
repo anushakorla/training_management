@@ -1,0 +1,20 @@
+%p#notice= notice
+%h1 List of Materials:
+- if admin_signed_in?
+  %td= link_to 'Add Attachment', new_level_attachment_path,class: 'btn btn-success'
+  |
+= link_to 'Back', program_levels_path(@level.program),class: 'btn btn-success'
+%table.table.table-hover
+  %thead
+    %tr
+      %th Document Name
+      %th Download Document
+      %th{:colspan => "3"}
+  %tbody
+    - @attachments.each do |attachment|
+      %tr
+        %td= attachment.name
+        %td= link_to "Download", attachment.document_url,class: 'btn btn-primary'
+        - if admin_signed_in?
+          %td= link_to 'Edit', edit_level_attachment_path(attachment.level,attachment),class: 'btn btn-warning'
+          %td= link_to 'Destroy', [attachment.level,attachment], method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-danger'
