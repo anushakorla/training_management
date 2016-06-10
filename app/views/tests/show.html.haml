@@ -3,13 +3,13 @@
   %strong Title:
   = @test.title
 %p
-  %strong Description:
+  %strong Questions:
   = @test.description
 %p
-  %strong Duration:
+  %strong Duration(days):
   = @test.duration
 %p
-  %strong Date:
+  %strong Due Date:
   = @test.date
 - if admin_signed_in?
   = link_to 'Edit', edit_level_test_path(@test.level,@test),class: 'btn btn-success'

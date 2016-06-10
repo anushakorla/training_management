@@ -14,17 +14,17 @@
         = f.text_field :title,placeholder: 'Title',class: 'form-control'
   .form-group
     .col-md-3
-      = f.label :description
+      = f.label :description, 'Questions'
       %br
         = f.text_area :description,id:'testeditor',placeholder:'description',class: 'form-control'
   .form-group
     .col-md-3
-      = f.label :duration
+      = f.label :duration, 'Duration(days)'
       %br
         = f.number_field :duration,placeholder: 'Duration',class: 'form-control'
   .form-group
     .col-md-3
-      = f.label :date
+      = f.label :date, 'Due Date'
       %br
         = f.text_field :date,:placeholder => 'Select Date and Time', class: "datetimepicker form-control"
   .form-group

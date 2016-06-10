@@ -14,7 +14,7 @@
     - @attachments.each do |attachment|
       %tr
         %td= attachment.name
-        %td= link_to "Download", attachment.document_url,class: 'btn btn-primary'
+        %td= link_to "View Document", attachment.document_url,class: 'btn btn-primary'
         - if admin_signed_in?
           %td= link_to 'Edit', edit_level_attachment_path(attachment.level,attachment),class: 'btn btn-warning'
           %td= link_to 'Destroy', [attachment.level,attachment], method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-danger'

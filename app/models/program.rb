@@ -2,7 +2,7 @@ class Program < ActiveRecord::Base
 	belongs_to :user
 	has_many :levels
     before_save :capitalize_language
-     before_save :capitalize_description
+    before_save :capitalize_description
 
 
 	def capitalize_language

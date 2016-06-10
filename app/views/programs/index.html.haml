@@ -3,8 +3,12 @@
 %br
   - if admin_signed_in?
     = link_to 'Add Program', new_program_path,class: 'btn btn-success'
+  - if user_signed_in?
+    = link_to 'Back',page_instruction_path,class: 'btn btn-success'
+
   %table.table.table-hover
     %thead
+
       %tr
         %th Language
         %th Description

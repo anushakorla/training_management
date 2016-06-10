@@ -9,7 +9,7 @@
     %thead
       %tr
         %th Name
-        %th Duration
+        %th Duration(days)
         %th Attachments
         %th Test
         - if admin_signed_in?
@@ -22,7 +22,7 @@
           %td{:style => "font-weight: bold;"}= level.duration
           - if user_signed_in?
             - if level.start_date.present?
-              %td= link_to 'View Attachments',level_attachments_path(level),class: 'btn btn-primary'
+              %td= link_to 'View Materials',level_attachments_path(level),class: 'btn btn-primary'
             - else
               %td= link_to 'Start Training',level_attachments_path(level,start_date: true),class: 'btn btn-primary'
           - if user_signed_in?
