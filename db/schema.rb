@@ -14,94 +14,99 @@
 ActiveRecord::Schema.define(version: 20160608062428) do
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "name"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "name",                   limit: 255
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "attachments", force: :cascade do |t|
-    t.string   "document"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
-    t.integer  "level_id"
+    t.string   "document",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "name",       limit: 255
+    t.integer  "level_id",   limit: 4
   end
 
-  add_index "attachments", ["level_id"], name: "index_attachments_on_level_id"
+  add_index "attachments", ["level_id"], name: "index_attachments_on_level_id", using: :btree
 
   create_table "levels", force: :cascade do |t|
-    t.string   "name"
-    t.string   "duration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "program_id"
+    t.string   "name",       limit: 255
+    t.string   "duration",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "program_id", limit: 4
     t.date     "start_date"
     t.date     "end_date"
   end
 
-  add_index "levels", ["program_id"], name: "index_levels_on_program_id"
+  add_index "levels", ["program_id"], name: "index_levels_on_program_id", using: :btree
 
   create_table "programs", force: :cascade do |t|
-    t.string   "language"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "language",    limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "submits", force: :cascade do |t|
-    t.string   "title"
-    t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "test_id"
-    t.integer  "user_id"
+    t.string   "title",      limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "test_id",    limit: 4
+    t.integer  "user_id",    limit: 4
   end
 
-  add_index "submits", ["test_id"], name: "index_submits_on_test_id"
-  add_index "submits", ["user_id"], name: "index_submits_on_user_id"
+  add_index "submits", ["test_id"], name: "index_submits_on_test_id", using: :btree
+  add_index "submits", ["user_id"], name: "index_submits_on_user_id", using: :btree
 
   create_table "tests", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.string   "duration"
-    t.string   "date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "level_id"
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.string   "duration",    limit: 255
+    t.string   "date",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "level_id",    limit: 4
   end
 
-  add_index "tests", ["level_id"], name: "index_tests_on_level_id"
+  add_index "tests", ["level_id"], name: "index_tests_on_level_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "name"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "name",                   limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "attachments", "levels"
+  add_foreign_key "levels", "programs"
+  add_foreign_key "submits", "tests"
+  add_foreign_key "submits", "users"
+  add_foreign_key "tests", "levels"
 end

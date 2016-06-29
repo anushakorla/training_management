@@ -2,7 +2,7 @@ development:
  adapter: mysql2
  encoding: utf8
  reconnect: false
- database: re_management_development
+ database: training_management
  pool: 5
  username: root
  password: password
@@ -16,7 +16,7 @@ test:
  adapter: mysql2
  encoding: utf8
  reconnect: false
- database: re_management_test
+ database: training_management
  pool: 5
  username: root
  password: nimbu
@@ -27,7 +27,7 @@ production:
  adapter: mysql2
  encoding: utf8
  reconnect: false
- database: re_managament_production
+ database: training_management
  pool: 5
  username: root
  password: nimbu
