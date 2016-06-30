@@ -29,6 +29,7 @@ gem "jquery-validation-rails"
 gem 'jquery-datetimepicker-rails'
  gem 'letter_opener'
  gem 'haml', '~> 4.0', '>= 4.0.7'
+ gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
